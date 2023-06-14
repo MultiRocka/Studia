@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <title>Sklep internetowy</title>
+  <link rel="icon" href="minikonka.png" type="image/png">
+  <link rel="stylesheet" href="styl.css" type="text/css">
+  <script src="script.js"></script>
+</head>
+<body>
+<div id="kontener">
+  <header><a href="main.html"> <img src="logo-no-background.png" width="200" alt="logo"></a></header>
+  <nav>
+    <ul>
+      <li><a href="main.html" class="buttona" ><img src="Produkty/sklep.png" alt="sklep" ><b>Sklep</b></a></li>
+      <li><a href="forum.html" class="buttona" ><img src="Produkty/forum.png" alt="forum"><b>Forum</b></a></li>
+      <li><a href="kontakt.html" class="buttona" ><img src="Produkty/kontakt.png" alt="kontakt"><b>Kontakt</b></a></li>
+      <li><a href="#" onclick="pokazOknoKoszyka()" class="buttona" ><img src="Produkty/koszyk.png" alt="koszyk"><b>Koszyk</b></a></li>
+    </ul>
+  </nav>
+  <main>
+    <div id="content" class="dark">
+      <h4> Zapraszamy do kontaktu z naszym sklepem komputerowym, Kompex, specjalizującym się w sprzedaży sprzętu komputerowego i akcesoriów. Jesteśmy gotowi odpowiedzieć na Twoje pytania, udzielić porad technicznych oraz zapewnić kompleksową obsługę.<br>
+        Jeśli potrzebujesz pomocy lub chcesz zadać nam pytanie, możesz skontaktować się z nami za pomocą poniższych danych kontaktowych:<br>
+        Numer telefonu: +48 123 456 789<br>
+        Adres e-mail: info@kompexsklep.pl<br>
+        Nasi doświadczeni pracownicy są dostępni w godzinach otwarcia sklepu, od poniedziałku do piątku od godziny 9:00 do 18:00 oraz w soboty od 10:00 do 15:00. Chętnie udzielimy Ci wszelkich informacji dotyczących dostępnych produktów, cen, promocji i warunków zakupu.<br>
+
+        Jeśli wolisz osobiście odwiedzić nasz sklep, zapraszamy na adres:<br></h4>
+      <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3532.1208751555637!2d22.551869771326167!3d51.24510758440751!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x472257658dd94c5f%3A0xfbf6156b2b267fc7!2sCentrum%20Handlowe%20Lublin%20Plaza!5e0!3m2!1spl!2spl!4v1686525919724!5m2!1spl!2spl" width="800" height="600" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+
+    <div id="overlay"></div>
+    <div id="okno-koszyka">
+      <h3>Zawartość koszyka</h3>
+      <ul id="koszyk"></ul>
+      <button onclick="schowajOknoKoszyka()">Zamknij</button>
+      <button onclick="wyczyscKoszyk()">Wyczyść koszyk</button>
+    </div>
+    <div class="notification">
+      <p>Witamy w Kompexie!👋 </p>
+      <span class="progress"></span>
+    </div>
+    <div id="fale">
+      <div class='air air1'></div>
+      <div class='air air2'></div>
+      <div class='air air3'></div>
+      <div class='air air4'></div>
+    </div>
+  </main>
+</div>
+</body>
+</html>

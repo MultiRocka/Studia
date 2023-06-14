@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <title>Sklep internetowy</title>
+  <link rel="icon" href="minikonka.png" type="image/png">
+  <link rel="stylesheet" href="styl.css" type="text/css">
+  <script src="script.js"></script>
+
+  <style>
+
+
+    .comment-form-container {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .comment-form-container label,
+    .comment-form-container input,
+    .comment-form-container textarea {
+      margin-bottom: 10px;
+    }
+
+    .comment-container .left-column {
+      font-size: 16px;
+      line-height: 1.5;
+    }
+
+    .comment-container .comment {
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+
+    .comment-container .username {
+      font-weight: bold;
+    }
+
+    .comment-container .email,
+    .comment-container .topics {
+      font-size: 14px;
+    }
+
+    .comment-container .comment {
+      font-size: 36px;
+
+    }
+    .dark {
+      background-color: rgba(0, 0, 0, 0.7); /* Przykładowy kolor tła w formacie RGBA */
+    }
+    #content.dark {
+      background-color: rgba(0, 0, 0, 0.7); /* Przyciemniony kolor tła */
+      color: white; /* Kolor czcionki na biały */
+      border-radius: 10px;
+    }
+
+    .comment-form-container {
+      border-radius: 10px; /* Zaokrąglone rogi */
+    }
+    #commentContainer {
+      border-radius: 10px; /* Zaokrąglone rogi */
+    }
+    h2 {
+      text-align: center; /* Wyśrodkowanie tekstu */
+      align-content: center;
+      align-items: center;
+      margin-left: 35%;
+    }
+
+  </style>
+</head>
+<body>
+<div id="kontener">
+  <header><a href="main.html"> <img src="logo-no-background.png" width="200" alt="logo"></a></header>
+  <nav>
+    <ul>
+      <li><a href="main.html" class="buttona" ><img src="Produkty/sklep.png" alt="sklep" ><b>Sklep</b></a></li>
+      <li><a href="forum.html" class="buttona" ><img src="Produkty/forum.png" alt="forum"><b>Forum</b></a></li>
+      <li><a href="kontakt.html" class="buttona" ><img src="Produkty/kontakt.png" alt="kontakt"><b>Kontakt</b></a></li>
+      <li><a href="#" onclick="pokazOknoKoszyka()" class="buttona" ><img src="Produkty/koszyk.png" alt="koszyk"><b>Koszyk</b></a></li>
+    </ul>
+  </nav>
+  <main>
+
+      <h2>Dodaj komentarz</h2>
+    <div id="content" class="dark">
+      <form id="commentForm" onsubmit="saveComment(event)">
+        <div class="comment-form-container">
+          <label for="username">Nazwa użytkownika:</label>
+          <input type="text" id="username" name="username" required pattern="[A-Za-z0-9]+" title="Tylko litery i cyfry są dozwolone">
+          <label for="email">Email:</label>
+          <input type="email" id="email" name="email" required>
+          <label>Interesujące tematy:</label>
+          <div>
+            <input type="checkbox" id="topicHardware" name="topics" value="sprzęt">
+            <label for="topicHardware">Sprzęt</label>
+          </div>
+          <div>
+            <input type="checkbox" id="topicProgramming" name="topics" value="programowanie">
+            <label for="topicProgramming">Programowanie</label>
+          </div>
+          <div>
+            <input type="checkbox" id="topicGames" name="topics" value="gry">
+            <label for="topicGames">Gry</label>
+          </div>
+          <label for="comment">Komentarz:</label>
+          <textarea id="comment" name="comment" required></textarea>
+          <label for="displayNickname">Wyświetlaj nick:</label>
+          <div>
+            <input type="radio" id="displayYes" name="displayNickname" value="yes" required>
+            <label for="displayYes">Tak</label>
+          </div>
+          <div>
+            <input type="radio" id="displayNo" name="displayNickname" value="no" required>
+            <label for="displayNo">Nie</label>
+          </div>
+          <button type="submit">Dodaj komentarz</button>
+        </div>
+      </form>
+      <div id="komentarze" class="dark2">
+      <h2>Zapisane komentarze</h2>
+      <div id="commentContainer"></div>
+      </div>
+    </div>
+
+    <div id="overlay"></div>
+    <div id="okno-koszyka">
+      <h3>Zawartość koszyka</h3>
+      <ul id="koszyk"></ul>
+      <button onclick="schowajOknoKoszyka()">Zamknij</button>
+      <button onclick="wyczyscKoszyk()">Wyczyść koszyk</button>
+    </div>
+    <div class="notification">
+      <p>Witamy w Kompexie!👋 </p>
+      <span class="progress"></span>
+    </div>
+    <div id="fale">
+      <div class='air air1'></div>
+      <div class='air air2'></div>
+      <div class='air air3'></div>
+      <div class='air air4'></div>
+    </div>
+  </main>
+</div>
+
+<script>
+  // Funkcja zapisująca komentarz do lokalnego magazynu danych (localStorage)
+  function saveComment(event) {
+    event.preventDefault();
+
+    const usernameInput = document.getElementById('username');
+    const emailInput = document.getElementById('email');
+    const topicsInput = document.querySelectorAll('input[name="topics"]:checked');
+    const commentInput = document.getElementById('comment');
+    const displayNicknameInput = document.querySelector('input[name="displayNickname"]:checked');
+
+    // Pobieranie danych z formularza
+    const username = usernameInput.value;
+    const email = emailInput.value;
+    const topics = Array.from(topicsInput).map(input => input.value);
+    const comment = commentInput.value;
+    const displayNickname = displayNicknameInput.value;
+
+    // Tworzenie obiektu reprezentującego komentarz
+    const newComment = {
+      username,
+      email,
+      topics,
+      comment,
+      displayNickname
+    };
+
+    // Sprawdzenie, czy już istnieje zapisany komentarz w localStorage
+    let savedComments = localStorage.getItem('comments');
+    if (savedComments) {
+      savedComments = JSON.parse(savedComments);
+    } else {
+      savedComments = [];
+    }
+
+    // Dodanie nowego komentarza do tablicy
+    savedComments.push(newComment);
+
+    // Zapisanie tablicy komentarzy w localStorage
+    localStorage.setItem('comments', JSON.stringify(savedComments));
+
+    // Czyszczenie formularza
+    usernameInput.value = '';
+    emailInput.value = '';
+    topicsInput.forEach(input => (input.checked = false));
+    commentInput.value = '';
+    displayNicknameInput.checked = false;
+
+    // Odświeżenie wyświetlania komentarzy
+    displayComments();
+  }
+
+  // Funkcja wyświetlająca komentarze z localStorage
+  function displayComments() {
+    const commentContainer = document.getElementById('commentContainer');
+
+    // Wyczyszczenie zawartości kontenera
+    commentContainer.innerHTML = '';
+
+    // Pobranie zapisanych komentarzy z localStorage
+    const savedComments = JSON.parse(localStorage.getItem('comments')) || [];
+
+    // Wyświetlanie każdego komentarza
+    savedComments.forEach((comment, index) => {
+      const commentElement = document.createElement('div');
+      commentElement.classList.add('comment-container');
+
+      // Wyświetlanie nazwy użytkownika
+      const usernameElement = document.createElement('div');
+      usernameElement.classList.add('username');
+      usernameElement.textContent = comment.displayNickname === 'yes' ? comment.username : 'Anon';
+      commentElement.appendChild(usernameElement);
+
+      // Wyświetlanie adresu e-mail
+      const emailElement = document.createElement('div');
+      emailElement.classList.add('email');
+      emailElement.textContent = comment.email;
+      commentElement.appendChild(emailElement);
+
+      // Wyświetlanie tematów
+      const topicsElement = document.createElement('div');
+      topicsElement.classList.add('topics');
+      topicsElement.textContent = 'Interesujące tematy: ' + comment.topics.join(', ');
+      commentElement.appendChild(topicsElement);
+
+      // Wyświetlanie treści komentarza
+      const commentTextElement = document.createElement('div');
+      commentTextElement.classList.add('comment');
+      commentTextElement.textContent = comment.comment;
+      commentElement.appendChild(commentTextElement);
+
+      // Przycisk edycji
+      const editButton = document.createElement('button');
+      editButton.textContent = 'Edytuj komentarz';
+      editButton.addEventListener('click', () => editComment(index));
+      commentElement.appendChild(editButton);
+
+      // Przycisk usuwania
+      const deleteButton = document.createElement('button');
+      deleteButton.textContent = 'Usuń komentarz';
+      deleteButton.addEventListener('click', () => deleteComment(index));
+      commentElement.appendChild(deleteButton);
+
+      commentContainer.appendChild(commentElement);
+    });
+  }
+
+  // Funkcja edycji komentarza
+  function editComment(index) {
+    const savedComments = JSON.parse(localStorage.getItem('comments')) || [];
+    const comment = savedComments[index];
+
+    // Wypełnienie formularza danymi komentarza
+    const usernameInput = document.getElementById('username');
+    const emailInput = document.getElementById('email');
+    const topicsInput = document.querySelectorAll('input[name="topics"]');
+    const commentInput = document.getElementById('comment');
+    const displayNicknameInput = document.querySelectorAll('input[name="displayNickname"]');
+
+    usernameInput.value = comment.username;
+    emailInput.value = comment.email;
+    topicsInput.forEach(input => (input.checked = comment.topics.includes(input.value)));
+    commentInput.value = comment.comment;
+    displayNicknameInput.forEach(input => (input.checked = input.value === comment.displayNickname));
+
+    // Usunięcie edytowanego komentarza z listy
+    savedComments.splice(index, 1);
+
+    // Zapisanie zaktualizowanej listy komentarzy w localStorage
+    localStorage.setItem('comments', JSON.stringify(savedComments));
+
+    // Odświeżenie wyświetlania komentarzy
+    displayComments();
+  }
+
+  // Funkcja usuwania komentarza
+  function deleteComment(index) {
+    const savedComments = JSON.parse(localStorage.getItem('comments')) || [];
+
+    // Usunięcie komentarza z listy
+    savedComments.splice(index, 1);
+
+    // Zapisanie zaktualizowanej listy komentarzy w localStorage
+    localStorage.setItem('comments', JSON.stringify(savedComments));
+
+    // Odświeżenie wyświetlania komentarzy
+    displayComments();
+  }
+
+  // Wywołanie funkcji wyświetlającej komentarze przy ładowaniu strony
+  displayComments();
+</script>
+</body>
+</html>
