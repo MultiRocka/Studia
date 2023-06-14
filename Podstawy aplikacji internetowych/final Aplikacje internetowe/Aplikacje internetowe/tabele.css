@@ -1,0 +1,34 @@
+table{
+    background: slateblue;
+    text-align: center;
+    width: 94%;
+    margin: 2%;
+    border: 2pt solid #000040;
+}
+
+caption{
+    font-size: 120%;
+    font-style: oblique;
+}
+thead, tfoot{
+    background: darkblue;
+    font-style: oblique;
+    font-size: 120%;
+    padding: 5pt;
+    color:Red;
+}
+
+td, th{
+    border: 1pt solid darkblue;
+}
+
+tfoot a{
+    color: white;
+}
+
+table tr:nth-child(even){
+    background-color:royalblue;
+}
+table tr:nth-child(odd){
+    background-color: lightblue;
+}

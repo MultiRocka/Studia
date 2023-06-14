@@ -1,0 +1,32 @@
+1. bratniadusza(X,Y) bez powtórzeń zrobić praca domowa
+
+Pol 1.
+bratniadusza(jerzy,X).
+
+1. 1 podcel lubi(jerzy,S) -> beskidy
+2 podcel lubi(Y, beskidy) -> jan
+3 powrót do 2
+
+X=jan
+X=karol
+X=jozef
+
+Pol 2.
+predkosc(t1,X).
+X=80
+predkosc(t2, 65).
+false.
+predkosc(X,100).
+X=t3.
+
+
+?- predkosc(t1,X).
+X = 9600/120.
+
+?- predkosc(t2, 65).
+false.
+
+?- predkosc(X,100).
+false.
+
+Jak jest = to nie oblicza wyniku tylko podstawia pod zmienne

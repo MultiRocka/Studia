@@ -1,0 +1,14 @@
+#zdj{
+    text-align:center;
+}
+.thmb{
+    display: inline-block;
+    margin: 10px;
+    width: 30%;
+    transition: width 0.3s ease-in-out;
+}
+
+.thmb:hover {
+    width: 33%; /* zmieniamy szerokość miniaturki przy najechaniu myszką */
+    transform: scale(1.1);
+}

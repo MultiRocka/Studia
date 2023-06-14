@@ -1,0 +1,13 @@
+1. ?- ciezszy(pomarancz,mandarynka).
+2. ?- ciezszy(arbuz,X).
+3. ciezszy(arbuz,X), ciezszy(X,Y).
+4. ciezszy(X,Y),ciezszy(Y,X).
+5. Lzejszy(X,Y) :- ciezszy(Y,X).
+6. lubi(jas,malgosia), lubi(malgosia,jas)
+7. lubi(jas,X), lubi(malgosia,X).
+8. lubi(jas, X); lubi(malgosia,X).
+lubi(jas,_).
+9. lubi(_,piernik).
+10. posiada(piotr,auto).
+11. posiada(piotr,auto(X,Y)).
+posiada(marcin,auto(G,F)).

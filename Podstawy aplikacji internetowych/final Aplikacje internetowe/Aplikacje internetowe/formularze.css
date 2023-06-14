@@ -1,0 +1,30 @@
+label{
+    background:gold;
+
+}
+h4{
+    margin:5px;
+}
+select{
+    background: lightsalmon;
+}
+
+#tresc1{
+    background: crimson;
+}
+input[type="text"]{
+    background: indianred;
+}
+input[type="email"]{
+    background: aqua;
+}
+input[type="submit"]{
+    background: darkmagenta;
+}
+input[type="reset"]{
+    background: goldenrod;
+}
+input[type="number"]{
+    background: salmon;
+}
+

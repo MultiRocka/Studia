@@ -1,0 +1,166 @@
+h1, h2, h3 {
+    margin: 0;
+    padding: 0;
+
+}
+
+body {
+    background: #80ffff;
+    color: #000040;
+
+}
+
+h1 {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    box-sizing: border-box;
+}
+
+h1, h2, footer {
+    background: #000040;
+    color: #8080ff;
+    text-align: center;
+
+}
+
+#kontener {
+    background: yellow;
+    border-radius: 10px;
+
+}
+
+nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    background: hotpink;
+    border-bottom: 2px solid #f5ff07;
+
+}
+
+nav ul {
+    display: flex;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+nav ul li {
+    margin: 0;
+}
+
+main {
+    background: #80ffff;
+    width: 75%;
+    padding: 1%;
+}
+
+#glowny {
+    display: flex;
+}
+
+aside {
+    width: 20%;
+    padding: 1%;
+    order: 1;
+    box-sizing: border-box;
+}
+
+@media screen and (max-width: 720px) {
+    #glowny {
+        flex-direction: column;
+    }
+
+    main {
+        width: 100%;
+    }
+
+    aside {
+        width: 100%;
+        order: 2;
+    }
+}
+
+footer {
+    clear: both;
+    width: 100%;
+    padding: 5px 0 5px 0;
+    text-align: center;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+
+}
+
+*.box {
+    background: #0000a0;
+    color: #dbffff;
+    padding: 5px;
+    margin: 5px;
+    font-size: 90%;
+    border-radius: 10px;
+    box-shadow: 5px 3px 3px grey;
+}
+
+*.box a {
+    color: mediumvioletred;
+
+}
+
+#nav {
+    text-align: left;
+    overflow: hidden;
+    font-family: calibri, tahoma;
+}
+
+ul#nav li {
+    border: 1px solid #d5d5d5;
+    list-style-type: none;
+    display: block;
+    background: #98bed8;
+    margin-left: 3px;
+    border-radius: 10px;
+
+}
+
+ul#nav li:hover {
+    border: 1px solid #d5d5d5;
+    list-style-type: none;
+    display: block;
+    background: #f0f0f0;
+    margin-left: 3px;
+
+}
+
+ul#nav li a {
+    display: block;
+    padding: 4pt;
+    text-decoration: none;
+
+}
+
+ul#nav li li a {
+    width: 160px;
+
+}
+
+ul#nav li li:hover {
+    background: green;
+}
+
+ul#nav li ul {
+    overflow: hidden;
+    display: none;
+}
+
+ul#nav li:hover ul {
+    position: absolute;
+    background: #aaa;
+    padding: 0;
+    display: block;
+    width: 177px;
+
+}

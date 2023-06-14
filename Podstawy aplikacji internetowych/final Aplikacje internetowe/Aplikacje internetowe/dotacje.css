@@ -1,0 +1,54 @@
+/* Ustawienie formularza */
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 50%;
+    margin: 0 auto;
+}
+
+/* Ustawienie pól formularza */
+fieldset {
+    width: 100%;
+    margin-bottom: 20px;
+    border: 2px, black;
+    padding: 10px ;
+}
+
+/* Ustawienie etykiet formularza */
+label {
+    display: inline-block;
+    width: 30%;
+    text-align: right;
+    margin-right: 10px;
+    font-weight: bold;
+}
+
+/* Ustawienie pól formularza */
+input[type="text"],
+input[type="number"],
+input[type="month"],
+input[type="text"] {
+    width: 60%;
+    padding: 5px;
+    border-radius: 3px;
+    border: 1px solid #ccc;
+}
+
+/* Ustawienie przycisku */
+button[type="submit"] {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+/* Zmiana stylu radio button */
+input[type="radio"] {
+    margin-right: 5px;
+    vertical-align: middle;
+}
+

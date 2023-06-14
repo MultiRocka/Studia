@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <title>Formularz dotacji</title>
+  <link rel="stylesheet" type="text/css" href="dotacje.css">
+</head>
+<body>
+<form action="submit.php" method="post">
+  <fieldset>
+    <legend>Beneficjent</legend>
+    <label for="beneficjent">Nazwa organizacji:</label>
+    <input type="text" id="beneficjent" name="beneficjent" required list="organizacje" placeholder="Wpisz nazwę organizacji">
+    <datalist id="organizacje">
+      <option value="Fundacja Koci Pazur">
+      <option value="Stowarzyszenie Kreatywni">
+      <option value="Fundacja Serce dla Zwierząt">
+      <option value="Stowarzyszenie Weteranów">
+    </datalist>
+  </fieldset>
+  <fieldset>
+    <legend>Wielkość dotacji</legend>
+    <label for="dotacja">Kwota dotacji:</label>
+    <input type="number" id="dotacja" name="dotacja" required min="20" step="10" placeholder="Wpisz kwotę dotacji">
+  </fieldset>
+  <fieldset>
+    <legend>Rodzaj karty płatniczej</legend>
+    <label><input type="radio" name="rodzaj_karty" value="Visa" required>Visa</label>
+    <label><input type="radio" name="rodzaj_karty" value="Mastercard" required>Mastercard</label>
+    <label><input type="radio" name="rodzaj_karty" value="American Express" required>American Express</label>
+  </fieldset>
+  <fieldset>
+    <legend>Informacje o karcie płatniczej</legend>
+    <label for="numer_karty">Numer karty:</label>
+    <input type="text" id="numer_karty" name="numer_karty" required pattern="[0-9]{13,16}" placeholder="Wpisz numer karty">
+    <br>
+    <label for="data_karty">Data ważności karty:</label>
+    <input type="month" id="data_karty" name="data_karty" required>
+    <br>
+    <label for="kod_cvv">Kod CVV:</label>
+    <input type="text" id="kod_cvv" name="kod_cvv" required pattern="[0-9]{3,4}" placeholder="Wpisz kod CVV">
+  </fieldset>
+  <fieldset>
+    <legend>Darczyńca</legend>
+    <label for="darczyńca">Imię i nazwisko lub nazwa firmy:</label>
+    <input type="text" id="darczyńca" name="darczyńca" required pattern="[A-Za-ząćęłńóśźżĄĆĘŁŃÓŚŹŻ -]{3,}" placeholder="Wpisz imię i nazwisko lub nazwę firmy">
+  </fieldset>
+  <button type="submit">Prześlij</button>
+</form>
+</body>
+</html>

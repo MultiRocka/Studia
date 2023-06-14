@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Kreator Pizzy</title>
+</head>
+<body>
+<h1>Kreator Pizzy</h1>
+<form action="mailto:s97771@pollub.edu.pl" method="post">
+<fieldset>
+  <legend>Rozmiar: </legend>
+  <input type="radio" name="wielkosc" value="mala"/>Mała
+  <input type="radio" name="wielkosc" value="srednia"/>Średnia
+  <input type="radio" name="wielkosc" value="duza"/>Duża
+</fieldset>
+  <fieldset>
+    <legend>Dodatki:</legend>
+    <input type="checkbox" name="Szynka" value="1"/>Szynka </br>
+    <input type="checkbox" name="Salami" value="2"/>Salami</br>
+    <input type="checkbox" name="Boczek" value="3"/>Boczek</br>
+    <input type="checkbox" name="Papryka" value="4"/>Papryka</br>
+    <input type="checkbox" name="Pomidor" value="5"/>Pomidor</br>
+    <input type="checkbox" name="Ser" value="6"/>Ser</br>
+  </fieldset>
+  <fieldset>
+    <legend>Sosy:</legend>
+    Wybierz sos: <select size="4" name="sos[]" multiple >
+    <option value="P">Pomidorowy</option>
+    <option value="Cz">Czosnkowy</option>
+    <option value="K">Ketchup łagodny</option>
+    <option value="Kostr">Ketchup pikantny</option>
+  </select>Wciśnij shift lub ctrl dla paru sosów<br/>
+    inne uwagi:<textarea cols="70" rows="5">
+
+  </textarea>
+  </fieldset>
+  <input type="reset" value="Wyczyść dane"/>
+  <input type="submit" value="Wyślij zamówienie"/>
+</form>
+
+</body>
+</html>
