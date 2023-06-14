@@ -1,0 +1,39 @@
+zad.1
+select oh.orderkey as "numer zamówienia",
+oh.customerkey as "kod klienta", 
+c.firstname|| ' '||c.lastname as "imie nazwisko klienta",
+to_char(oh.orderdate, 'yyyy-mm-dd') as "data złożenia",
+to_char(oh.deliverydate, 'yyyy-mm-dd') as "data dostarczenia",
+sum(od.transactionprice*quantity) as "wartość zamówienia",
+ch.channelname as "kanał złożenia",
+co.countryname as "kraj"
+from orderheader oh
+inner join customer c on oh.customerkey=c.customerkey
+inner join orderchannel ch on ch.channelkey=oh.channelkey
+inner join country co on co.countrykey=oh.countrykey
+inner join orderdetail od on od.orderkey=oh.orderkey
+group by oh.orderkey, oh.customerkey, c.firstname|| ' '||c.lastname,
+to_char(oh.orderdate, 'yyyy-mm-dd'),to_char(oh.deliverydate, 'yyyy-mm-dd'),ch.channelname,co.countryname
+order by 1
+
+zad.2
+select extract(year from orderdate) as "rok",
+to_char(TRUNC(oh.orderdate,'Q'),'Q') as "Kwartał",
+count(oh.orderkey) as "ilość produktów",
+sum(od.quantity*od.transactionprice) as "wartość zamówień"
+from orderheader oh
+inner join orderdetail od on od.orderkey=oh.orderkey
+group by rollup(extract(year from orderdate),to_char(TRUNC(oh.orderdate,'Q'),'Q'))
+order by 1 ASC ,2 ASC
+
+zad.3
+select extract(year from orderdate) as "rok",
+'Q'||to_char(TRUNC(oh.orderdate,'Q'),'Q') as "Kwartał",
+round(max(od.quantity*od.transactionprice),2) as "Maksymalna",
+round(min(od.quantity*od.transactionprice),2) as "Minimalna",
+round(avg(od.quantity*od.transactionprice),2) as "Średnia"
+from orderheader oh
+inner join orderdetail od on od.orderkey=oh.orderkey
+group by extract(year from orderdate),to_char(TRUNC(oh.orderdate,'Q'),'Q')
+order by 1 ,2
+
